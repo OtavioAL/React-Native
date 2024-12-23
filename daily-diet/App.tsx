@@ -18,10 +18,12 @@ export default function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar backgroundColor="transparent" style="dark" translucent />
-      {fontsLoaded ? <Routes /> : <Loading />}
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <StatusBar backgroundColor="transparent" style="dark" translucent />
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </ThemeProvider>
+    </>
   );
 }
 

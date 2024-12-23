@@ -11,7 +11,7 @@ export function AppRoutes() {
       }}
       initialRouteName="home"
     >
-      <Screen name="Home" component={Home} />
+      <Screen name="home" component={Home} />
     </Navigator>
   );
 }
