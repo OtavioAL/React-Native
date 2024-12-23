@@ -30,7 +30,7 @@ export default {
       md: 16,
       lg: 18,
       xl: 24,
-      "2xl": 32,
+      xxl: 32,
     },
 
     lineHeights: {
