@@ -5,6 +5,7 @@ export interface ButtonStylesProps {
   bgColor?: string;
   color?: string;
   width?: string;
+  type?: "primary" | "secondary";
 }
 
 export const Container = styled.TouchableOpacity<ButtonStylesProps>`
@@ -17,6 +18,10 @@ export const Container = styled.TouchableOpacity<ButtonStylesProps>`
   border-radius: 6px;
   background-color: ${(props) => props?.bgColor};
   color: ${(props) => props?.color};
+  border: ${(props) =>
+    props?.type === "secondary"
+      ? `1px solid ${theme.COLORS.gray_700}`
+      : "none"};
 `;
 
 export const TitleButton = styled.Text<ButtonStylesProps>`

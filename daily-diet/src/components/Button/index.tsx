@@ -7,7 +7,6 @@ interface ButtonProps extends ButtonStylesProps, TouchableOpacityProps {
   hasIcon?: boolean;
   icon?: JSX.Element;
   text: string;
-  width?: string;
 }
 
 export const Button = ({
@@ -18,10 +17,17 @@ export const Button = ({
   icon,
   text,
   width = "100%",
+  type = "primary",
   ...props
 }: ButtonProps) => {
   return (
-    <Container onPress={onPress} bgColor={bgColor} width={width} {...props}>
+    <Container
+      onPress={onPress}
+      bgColor={bgColor}
+      width={width}
+      {...props}
+      type={type}
+    >
       {hasIcon && icon}
       <TitleButton color={color}>{text}</TitleButton>
     </Container>
