@@ -32,6 +32,10 @@ export default function Home() {
     navigation.navigate("statistics");
   };
 
+  const handleGoToRegisterMeal = () => {
+    navigation.navigate("registerMeal");
+  };
+
   return (
     <Container>
       <Header />
@@ -53,7 +57,7 @@ export default function Home() {
         bgColor={theme.COLORS.gray_600}
         color={theme.COLORS.gray_200}
         icon={<Plus size={18} color={theme.COLORS.gray_100} />}
-        onPress={() => {}}
+        onPress={handleGoToRegisterMeal}
       />
 
       <ListMeals meals={meals} />
