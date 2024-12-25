@@ -26,7 +26,7 @@ export const ListMeals = ({ meals }: IPropsMeals) => {
         </>
       )}
       contentContainerStyle={
-        !meals.length && {
+        !meals?.length && {
           flex: 1,
           alignItems: "center",
           justifyContent: "center",

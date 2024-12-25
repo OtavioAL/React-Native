@@ -49,13 +49,6 @@ export const StatisticsBanner = ({
       <Title>{title}</Title>
 
       <Description>{subtitle}</Description>
-
-      {/* <Texts fontSize="2xl" fontFamily="bold">
-        {title}
-      </Texts>
-      <Texts fontSize="sm" color="gray_600" textAlign="center">
-        {subtitle}
-      </Texts> */}
     </Container>
   );
 };
