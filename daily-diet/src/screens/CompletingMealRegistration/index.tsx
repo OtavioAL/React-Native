@@ -2,7 +2,7 @@ import { Image } from "react-native";
 import theme from "../../theme";
 import { Container, Text, Title } from "./styles";
 import { Button } from "../../components/Button";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 interface IPropsCompletingMealRegistration {
   isOnTheDiet: boolean;
@@ -10,9 +10,13 @@ interface IPropsCompletingMealRegistration {
 
 export default function CompletingMealRegistration() {
   const route = useRoute();
+  const navigation = useNavigation();
 
-  // const { isOnTheDiet } = route.params as IPropsCompletingMealRegistration;
-  const isOnTheDiet = true;
+  const { isOnTheDiet } = route.params as IPropsCompletingMealRegistration;
+
+  const handleGoToHome = () => {
+    navigation.navigate("home");
+  };
 
   return (
     <Container>
@@ -40,7 +44,7 @@ export default function CompletingMealRegistration() {
         text="Ir para a página inicial"
         bgColor={theme.COLORS.gray_600}
         color={theme.COLORS.gray_200}
-        onPress={() => {}}
+        onPress={handleGoToHome}
         width="60%"
       />
     </Container>
