@@ -5,9 +5,17 @@ import {
   Text,
   VStack,
 } from "@gluestack-ui/themed";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { ArrowRight, Tag } from "phosphor-react-native";
 
 export const Banner = () => {
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  const handleGoToMyAds = () => {
+    navigation.navigate("myads");
+  };
+
   return (
     <VStack w={"$full"} p={"$5"}>
       <Text color="$gray600" fontSize={"$md"} fontFamily="$body" mb={10}>
@@ -22,6 +30,7 @@ export const Banner = () => {
         $active-bg="$blue500"
         opacity={0.5}
         gap={10}
+        onPress={handleGoToMyAds}
       >
         <HStack flex={1} gap={10} alignItems="center">
           <Tag color={"#364D9D"} size={32} weight="bold" />
