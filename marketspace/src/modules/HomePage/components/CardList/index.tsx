@@ -1,7 +1,11 @@
 import { AdCard } from "@components/AdCard";
 import { Box } from "@gluestack-ui/themed";
 
-export const CardList = () => {
+interface IProps {
+  isMyAd?: boolean;
+}
+
+export const CardList = ({ isMyAd }: IProps) => {
   return (
     <Box
       // flex={4}
@@ -13,12 +17,12 @@ export const CardList = () => {
       flexWrap="wrap"
       bg="$gra700"
     >
-      <AdCard />
-      <AdCard />
-      <AdCard />
-      <AdCard />
-      <AdCard />
-      <AdCard />
+      <AdCard isMyAd={isMyAd} />
+      <AdCard isMyAd={isMyAd} />
+      <AdCard isMyAd={isMyAd} />
+      <AdCard isMyAd={isMyAd} />
+      <AdCard isMyAd={isMyAd} />
+      <AdCard isMyAd={isMyAd} />
     </Box>
   );
 };
