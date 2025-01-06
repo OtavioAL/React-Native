@@ -8,11 +8,21 @@ import { gluestackUIConfig } from "../../config/gluestack-ui.config";
 import { Platform } from "react-native";
 import { House, SignOut, Tag } from "phosphor-react-native";
 import { Home } from "@screens/home";
+import { MyAds } from "@screens/myAds";
+import { AdDetails } from "@screens/adDetails";
+import { AdCreated } from "@screens/adCreated";
+import { AdPreview } from "@screens/adPreview";
+import { DetailsMyAd } from "@screens/detailsMyAd";
 
 type AppRoutes = {
   home: undefined;
-  homeee: undefined;
+  myads: undefined;
   homeeee: undefined;
+  adDetails: { adId: string };
+  adCreated: undefined;
+  adPreview: undefined;
+  detailsMyAd: undefined;
+  // adDetails: undefined;
 };
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 
@@ -46,8 +56,8 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name="homeee"
-        component={Home}
+        name="myads"
+        component={MyAds}
         options={{
           tabBarIcon: ({ color }) => <Tag color={color} size={iconSize} />,
         }}
@@ -59,6 +69,48 @@ export function AppRoutes() {
           tabBarIcon: ({ color }) => (
             <SignOut color={"#E07878"} size={iconSize} />
           ),
+        }}
+      />
+
+      <Screen
+        name="adDetails"
+        component={AdDetails}
+        options={{
+          tabBarButton: () => null,
+          // sceneStyle: { display: "none" },
+          tabBarItemStyle: { display: "none" },
+          tabBarStyle: { display: "none" },
+        }}
+      />
+
+      <Screen
+        name="adCreated"
+        component={AdCreated}
+        options={{
+          tabBarButton: () => null,
+          // sceneStyle: { display: "none" },
+          tabBarItemStyle: { display: "none" },
+          tabBarStyle: { display: "none" },
+        }}
+      />
+      <Screen
+        name="adPreview"
+        component={AdPreview}
+        options={{
+          tabBarButton: () => null,
+          // sceneStyle: { display: "none" },
+          tabBarItemStyle: { display: "none" },
+          tabBarStyle: { display: "none" },
+        }}
+      />
+      <Screen
+        name="detailsMyAd"
+        component={DetailsMyAd}
+        options={{
+          tabBarButton: () => null,
+          // sceneStyle: { display: "none" },
+          tabBarItemStyle: { display: "none" },
+          tabBarStyle: { display: "none" },
         }}
       />
     </Navigator>
