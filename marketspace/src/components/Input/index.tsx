@@ -33,7 +33,7 @@ export function Input({
         borderRadius="$md"
         $focus={{
           borderWidth: 1,
-          borderColor: invalid ? "$red500" : "$green500",
+          borderColor: invalid ? "$red500" : "$blue500",
         }}
         $invalid={{
           borderWidth: 1,
