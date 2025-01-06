@@ -9,15 +9,26 @@ import { Form } from "./components/Form";
 import { Text } from "@gluestack-ui/themed";
 import { Button } from "@components/Button";
 import { HeaderPublicPage } from "@components/HeaderPublicPage";
+import { useAuth } from "@hooks/useAuth";
 
 export const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
-
+  const { singIn } = useAuth();
   const { control, formState, handleSubmit, ...methods }: UseFormReturn<any> =
     useForm();
 
-  const handleSignIn = () => {};
+  const handleSignIn = async () => {
+    const email = "teste@teste.com";
+    const password = "123456";
+    try {
+      setIsLoading(true);
+      await singIn(email, password);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleNewAccount = () => {
     navigation.navigate("signUp");
@@ -82,7 +93,8 @@ export const SignIn = () => {
 
               <Button
                 title="Entrar"
-                onPress={handleSubmit(handleSignIn)}
+                // onPress={handleSubmit(handleSignIn)}
+                onPress={handleSignIn}
                 isLoading={isLoading}
               />
             </VStack>
