@@ -23,6 +23,7 @@ import {
 import { gluestackUIConfig } from "../../../../../config/gluestack-ui.config";
 import { X } from "phosphor-react-native";
 import { Button } from "@components/Button";
+import { ProductPaymentMethod } from "@components/ProductPaymentMethod";
 
 interface IProps {
   bottomSheetModalRef: any;
@@ -105,106 +106,9 @@ export const ModalFilters = ({ bottomSheetModalRef }: IProps) => {
                 borderRadius={"$2xl"}
               />
             </HStack>
-
-            <VStack
-              w={"$full"}
-              alignItems="flex-start"
-              justifyContent="flex-start"
-              mt={10}
-            >
-              <Text color="$gray700" fontSize={"$md"} fontFamily="$body">
-                Aceita troca?
-              </Text>
-
-              <Switch
-                size="lg"
-                // isDisabled={false}
-                trackColor={{ false: "$gray300", true: "$blue500" }}
-                thumbColor={"$gray100"}
-                // activeThumbColor={"$gray100"}
-                ios_backgroundColor={"$gray100"}
-              />
-            </VStack>
           </VStack>
 
-          <VStack
-            w={"$full"}
-            alignItems="flex-start"
-            justifyContent="flex-start"
-            // mt={10}
-          >
-            <Text color="$gray700" fontSize={"$md"} fontFamily="$body">
-              Meios de pagamento aceitos
-            </Text>
-
-            <CheckboxGroup
-              mt={20}
-              value={valuesCheckbox}
-              onChange={(keys) => {
-                setValuesCheckbox(keys);
-              }}
-            >
-              <VStack space="xl">
-                <Checkbox value="boleto" aria-label="Boleto" gap={10}>
-                  <CheckboxIndicator
-                    $checked-bg="$blue500"
-                    $checked-borderColor="$blue500"
-                  >
-                    <CheckboxIcon
-                      $checked-bg="$gray100"
-                      $checked-color="$gray100"
-                      as={CheckIcon}
-                    />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Boleto</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="pix" aria-label="Pix" gap={10}>
-                  <CheckboxIndicator
-                    $checked-bg="$blue500"
-                    $checked-borderColor="$blue500"
-                  >
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Pix</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="dinheiro" aria-label="Dinheiro" gap={10}>
-                  <CheckboxIndicator
-                    $checked-bg="$blue500"
-                    $checked-borderColor="$blue500"
-                  >
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Dinheiro</CheckboxLabel>
-                </Checkbox>
-                <Checkbox
-                  value="catao_credito"
-                  aria-label="Cartão de Crédito"
-                  gap={10}
-                >
-                  <CheckboxIndicator
-                    $checked-bg="$blue500"
-                    $checked-borderColor="$blue500"
-                  >
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Cartão de Crédito</CheckboxLabel>
-                </Checkbox>
-                <Checkbox
-                  value="deposito"
-                  aria-label="Depósito Bancário"
-                  gap={10}
-                >
-                  <CheckboxIndicator
-                    $checked-bg="$blue500"
-                    $checked-borderColor="$blue500"
-                  >
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Depósito Bancário</CheckboxLabel>
-                </Checkbox>
-              </VStack>
-            </CheckboxGroup>
-          </VStack>
+          <ProductPaymentMethod />
 
           <HStack
             mt={20}
