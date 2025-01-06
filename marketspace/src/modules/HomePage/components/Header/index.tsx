@@ -3,9 +3,16 @@ import { HStack, Text, VStack } from "@gluestack-ui/themed";
 import defaulUserPhotoImg from "../../../../../assets/imageUserDefault.png";
 import { useAuth } from "@hooks/useAuth";
 import { Button } from "@components/Button";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { useNavigation } from "@react-navigation/native";
 
 export const Header = () => {
   const { user } = useAuth();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  const handleGoToCreateAd = () => {
+    navigation.navigate("adCreated");
+  };
 
   return (
     <HStack p={20} gap={15}>
@@ -29,7 +36,7 @@ export const Header = () => {
       </HStack>
       <Button
         title="Criar anúncio"
-        onPress={() => {}}
+        onPress={handleGoToCreateAd}
         isLoading={false}
         type="black"
         flex={1}
