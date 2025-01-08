@@ -18,9 +18,13 @@ export const SignIn = () => {
   const { control, formState, handleSubmit, ...methods }: UseFormReturn<any> =
     useForm();
 
-  const handleSignIn = async () => {
-    const email = "teste@teste.com";
-    const password = "123456";
+  const handleSignIn = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     try {
       setIsLoading(true);
       await singIn(email, password);
@@ -93,8 +97,8 @@ export const SignIn = () => {
 
               <Button
                 title="Entrar"
-                // onPress={handleSubmit(handleSignIn)}
-                onPress={handleSignIn}
+                onPress={handleSubmit(handleSignIn)}
+                // onPress={handleSignIn}
                 isLoading={isLoading}
               />
             </VStack>
