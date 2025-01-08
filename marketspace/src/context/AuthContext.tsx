@@ -83,15 +83,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   async function singIn(email: string, password: string) {
     try {
-      setUser({
-        id: "123",
-        name: "John Doe",
-        email: "Y0d3y@example.com",
-        avatar: "",
-      });
-
-      return;
-
       const { data } = await api.post("/sessions", { email, password });
 
       if (data.user && data.token && data.refresh_token) {
