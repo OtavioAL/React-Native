@@ -1,21 +1,44 @@
 import { Box, Button, HStack, Image, VStack } from "@gluestack-ui/themed";
-import imageCoverCard from "../../assets/image-cover-card.png";
 import { Text } from "@gluestack-ui/themed";
 import { UserPhoto } from "@components/UserPhoto";
 import defaulUserPhotoImg from "../../../assets/imageUserDefault.png";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { useAuth } from "@hooks/useAuth";
+import { api } from "@services/api";
 
 interface IProps {
   isMyAd?: boolean;
+  imageCoverCard: string;
+  isNew: boolean;
+  name: string;
+  price: number;
+  id: string;
 }
 
-export function AdCard({ isMyAd }: IProps) {
+export function AdCard({
+  isMyAd,
+  imageCoverCard,
+  isNew,
+  name,
+  price,
+  id,
+}: IProps) {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
+  const { user } = useAuth();
 
   const handleGoToAdDetails = () => {
     if (isMyAd) {
-      navigation.navigate("detailsMyAd");
+      navigation.navigate("detailsMyAd", {
+        // title: name,
+        // description: product?.description,
+        // value: `${product?.price}`,
+        // listImages: product?.product_images,
+        // paymentMethods: product?.payment_methods?.map((method) => method?.key),
+        // isNew,
+        // isAcceptExchange: product?.accept_trade,
+        id,
+      });
       return;
     }
     navigation.navigate("adDetails", {
@@ -30,7 +53,9 @@ export function AdCard({ isMyAd }: IProps) {
           <Box w={"$full"} rounded="$lg" h={100} position="relative">
             <Image
               size="md"
-              source={imageCoverCard}
+              source={{
+                uri: imageCoverCard,
+              }}
               alt="Imagem de capa do anúncio"
               rounded="$lg"
               w={"$full"}
@@ -46,7 +71,11 @@ export function AdCard({ isMyAd }: IProps) {
               w={"$full"}
             >
               <UserPhoto
-                source={defaulUserPhotoImg}
+                source={
+                  isMyAd
+                    ? { uri: `${api.defaults.baseURL}/images/${user.avatar}` }
+                    : defaulUserPhotoImg
+                }
                 size="sm"
                 alt="Imagem do anunciante"
                 w={30}
@@ -55,26 +84,26 @@ export function AdCard({ isMyAd }: IProps) {
               />
 
               <Box
-                bg="$blue500"
+                bg={isNew ? "$blue500" : "$gray300"}
                 borderRadius={"$xl"}
                 p={5}
                 alignItems="center"
                 justifyContent="center"
               >
                 <Text
-                  color="$gray100"
+                  color={isNew ? "$gray100" : "$gray700"}
                   fontSize={"$sm"}
                   fontFamily="$heading"
                   textTransform="uppercase"
                 >
-                  novo
+                  {isNew ? "NOVO" : "USADO"}
                 </Text>
               </Box>
             </HStack>
           </Box>
 
           <Text color="$gray600" fontSize={"$md"} fontFamily="$body">
-            Tênis vermelho
+            {name}
           </Text>
 
           <HStack>
@@ -82,7 +111,7 @@ export function AdCard({ isMyAd }: IProps) {
               R$
             </Text>
             <Text color="$gray700" fontSize={"$sm"} fontFamily="$heading">
-              59,90
+              {price}
             </Text>
           </HStack>
         </VStack>
