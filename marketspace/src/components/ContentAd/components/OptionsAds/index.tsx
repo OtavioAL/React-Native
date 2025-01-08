@@ -6,7 +6,12 @@ import iconeDinheiro from "../../../../assets/icone-dinehiro.png";
 import iconecCartao from "../../../../assets/icone-cartao.png";
 import iconeDeposito from "../../../../assets/icone-deposito.png";
 
-export const OptionsAds = () => {
+interface IProps {
+  isAcceptExchange: boolean;
+  paymentMethods: Array<string>;
+}
+
+export const OptionsAds = ({ isAcceptExchange, paymentMethods }: IProps) => {
   return (
     <VStack w={"$full"} gap={"$2.5"} p={"$5"} pt={"$1"}>
       <HStack w={"$full"} gap={"$2"}>
@@ -20,7 +25,7 @@ export const OptionsAds = () => {
         </Text>
 
         <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-          Sim
+          {isAcceptExchange ? "Sim" : "Não"}
         </Text>
       </HStack>
 
@@ -34,70 +39,81 @@ export const OptionsAds = () => {
           Meios de pagamento:
         </Text>
 
-        <HStack w={"$full"} gap={"$2"} alignItems="center">
-          <Image
-            w={20}
-            h={20}
-            source={iconeBoleto}
-            alt="imagem tipo de pagamento"
-          />
+        {paymentMethods?.includes("boleto") && (
+          <HStack w={"$full"} gap={"$2"} alignItems="center">
+            <Image
+              w={20}
+              h={20}
+              source={iconeBoleto}
+              alt="imagem tipo de pagamento"
+            />
 
-          <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-            Boleto
-          </Text>
-        </HStack>
+            <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
+              Boleto
+            </Text>
+          </HStack>
+        )}
 
-        <HStack w={"$full"} gap={"$2"} alignItems="center">
-          <Image
-            w={20}
-            h={20}
-            source={iconePix}
-            alt="imagem tipo de pagamento"
-          />
+        {paymentMethods?.includes("pix") && (
+          <HStack w={"$full"} gap={"$2"} alignItems="center">
+            <Image
+              w={20}
+              h={20}
+              source={iconePix}
+              alt="imagem tipo de pagamento"
+            />
 
-          <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-            Pix
-          </Text>
-        </HStack>
+            <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
+              Pix
+            </Text>
+          </HStack>
+        )}
 
-        <HStack w={"$full"} gap={"$2"} alignItems="center">
-          <Image
-            w={20}
-            h={20}
-            source={iconeDinheiro}
-            alt="imagem tipo de pagamento"
-          />
+        {paymentMethods?.includes("dinheiro") ||
+          (paymentMethods?.includes("cash") && (
+            <HStack w={"$full"} gap={"$2"} alignItems="center">
+              <Image
+                w={20}
+                h={20}
+                source={iconeDinheiro}
+                alt="imagem tipo de pagamento"
+              />
 
-          <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-            Dinheiro
-          </Text>
-        </HStack>
+              <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
+                Dinheiro
+              </Text>
+            </HStack>
+          ))}
+        {paymentMethods?.includes("cartao") ||
+          (paymentMethods?.includes("card") && (
+            <HStack w={"$full"} gap={"$2"} alignItems="center">
+              <Image
+                w={20}
+                h={20}
+                source={iconecCartao}
+                alt="imagem tipo de pagamento"
+              />
 
-        <HStack w={"$full"} gap={"$2"} alignItems="center">
-          <Image
-            w={20}
-            h={20}
-            source={iconecCartao}
-            alt="imagem tipo de pagamento"
-          />
+              <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
+                Cartão de Crédito
+              </Text>
+            </HStack>
+          ))}
+        {paymentMethods?.includes("deposito") ||
+          (paymentMethods?.includes("deposit") && (
+            <HStack w={"$full"} gap={"$2"} alignItems="center">
+              <Image
+                w={20}
+                h={20}
+                source={iconeDeposito}
+                alt="imagem tipo de pagamento"
+              />
 
-          <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-            Cartão de Crédito
-          </Text>
-        </HStack>
-
-        <HStack w={"$full"} gap={"$2"} alignItems="center">
-          <Image
-            w={20}
-            h={20}
-            source={iconeDeposito}
-            alt="imagem tipo de pagamento"
-          />
-
-          <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
-            Depósito Bancário
-          </Text>
-        </HStack>
+              <Text fontFamily="$body" fontSize={"$md"} color={"$gray700"}>
+                Depósito Bancário
+              </Text>
+            </HStack>
+          ))}
       </VStack>
     </VStack>
   );
