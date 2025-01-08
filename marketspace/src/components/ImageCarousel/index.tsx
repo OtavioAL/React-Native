@@ -31,7 +31,7 @@ const ImageCarousel = ({ images }: any) => {
       autoPlayInterval={2000}
       defaultScrollOffsetValue={scrollOffsetValue}
       // onSnapToItem={(index) => console.log("current index:", index)}
-      renderItem={({ index, item }) => (
+      renderItem={({ index, item }: { index: number; item: string }) => (
         <View
           style={{
             flex: 1,
@@ -39,7 +39,10 @@ const ImageCarousel = ({ images }: any) => {
           }}
         >
           {/* Exemplo de exibição de imagens */}
-          <Image source={image} style={{ width: "100%", height: "100%" }} />
+          <Image
+            source={{ uri: item }}
+            style={{ width: "100%", height: "100%" }}
+          />
         </View>
       )}
     />
