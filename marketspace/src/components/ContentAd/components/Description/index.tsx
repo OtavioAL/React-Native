@@ -1,11 +1,18 @@
 import { Button } from "@components/Button";
 import { Box, HStack, Text, VStack } from "@gluestack-ui/themed";
 
-export const Description = () => {
+interface IProps {
+  title: string;
+  description: string;
+  value: string;
+  isNew: boolean;
+}
+
+export const Description = ({ description, title, value, isNew }: IProps) => {
   return (
     <VStack w={"$full"} p={"$5"} pt={"$1"} mb={"$2.5"} gap={"$3"}>
       <Box
-        bg="$blue500"
+        bg={isNew ? "$blue500" : "$gray300"}
         w={"$12"}
         h={"$5"}
         borderRadius={"$2xl"}
@@ -14,12 +21,12 @@ export const Description = () => {
         // mb={15}
       >
         <Text
-          color={"$white"}
+          color={isNew ? "$gray100" : "$gray700"}
           fontFamily="$heading"
           fontSize={12}
           textAlign={"center"}
         >
-          NOVO
+          {isNew ? "NOVO" : "USADO"}
         </Text>
       </Box>
 
@@ -30,7 +37,7 @@ export const Description = () => {
           color={"$gray700"}
           fontWeight={"$bold"}
         >
-          Bicicleta
+          {title ?? ""}
         </Text>
 
         <HStack gap={"$1.5"} alignItems="flex-end">
@@ -39,15 +46,13 @@ export const Description = () => {
           </Text>
 
           <Text fontFamily="$heading" fontSize={"$xl"} color={"$blue500"}>
-            120,00
+            {value ?? ""}
           </Text>
         </HStack>
       </HStack>
 
       <Text fontFamily="$body" fontSize={"$md"} color="$gray500">
-        Cras congue cursus in tortor sagittis placerat nunc, tellus arcu. Vitae
-        ante leo eget maecenas urna mattis cursus. Mauris metus amet nibh mauris
-        mauris accumsan, euismod. Aenean leo nunc, purus iaculis in aliquam.
+        {description ?? ""}
       </Text>
     </VStack>
   );
