@@ -13,6 +13,8 @@ import { AdDetails } from "@screens/adDetails";
 import { AdCreated } from "@screens/adCreated";
 import { AdPreview } from "@screens/adPreview";
 import { DetailsMyAd } from "@screens/detailsMyAd";
+import { RouteParamsAdPreview } from "@components/interfaces";
+import { AdEditPage } from "../modules/AdEditPage";
 
 type AppRoutes = {
   home: undefined;
@@ -20,8 +22,9 @@ type AppRoutes = {
   homeeee: undefined;
   adDetails: { adId: string };
   adCreated: undefined;
-  adPreview: undefined;
-  detailsMyAd: undefined;
+  adEdit: { id: string };
+  adPreview: RouteParamsAdPreview;
+  detailsMyAd: { id: string };
   // adDetails: undefined;
 };
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -86,6 +89,16 @@ export function AppRoutes() {
       <Screen
         name="adCreated"
         component={AdCreated}
+        options={{
+          tabBarButton: () => null,
+          // sceneStyle: { display: "none" },
+          tabBarItemStyle: { display: "none" },
+          tabBarStyle: { display: "none" },
+        }}
+      />
+      <Screen
+        name="adEdit"
+        component={AdEditPage}
         options={{
           tabBarButton: () => null,
           // sceneStyle: { display: "none" },
