@@ -8,12 +8,19 @@ import {
   Button as GluestackButton,
 } from "@gluestack-ui/themed";
 import { MagnifyingGlass, Sliders } from "phosphor-react-native";
+import { Dispatch, SetStateAction } from "react";
 
 interface IProps {
   handlePresentModalPress: () => void;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
 }
 
-export const Filter = ({ handlePresentModalPress }: IProps) => {
+export const Filter = ({
+  handlePresentModalPress,
+  search,
+  setSearch,
+}: IProps) => {
   return (
     <VStack w={"$full"} p={"$5"}>
       <Text color="$gray600" fontSize={"$md"} fontFamily="$body" mb={10}>
@@ -40,6 +47,8 @@ export const Filter = ({ handlePresentModalPress }: IProps) => {
             $invalid={{}}
           >
             <InputField
+              value={search}
+              onChangeText={setSearch}
               w="$full"
               placeholder="Buscar anúncio"
               bg="$gray100"

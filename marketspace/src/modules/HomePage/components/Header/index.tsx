@@ -5,6 +5,7 @@ import { useAuth } from "@hooks/useAuth";
 import { Button } from "@components/Button";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { useNavigation } from "@react-navigation/native";
+import { api } from "@services/api";
 
 export const Header = () => {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ export const Header = () => {
         <UserPhoto
           width={45}
           height={45}
-          source={defaulUserPhotoImg}
+          uriImage={`${api.defaults.baseURL}/images/${user.avatar}`}
           size="md"
           alt="Imagem do usuário"
         />

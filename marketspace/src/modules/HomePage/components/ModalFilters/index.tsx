@@ -1,24 +1,13 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 import BottomSheet, {
   BottomSheetModal,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import { useRef, useState } from "react";
 import { useWindowDimensions } from "react-native";
 import {
   HStack,
   Text,
-  View,
   VStack,
   Button as GluestackButton,
-  Switch,
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxIcon,
-  CheckboxLabel,
-  CheckIcon,
-  CheckboxGroup,
 } from "@gluestack-ui/themed";
 import { gluestackUIConfig } from "../../../../../config/gluestack-ui.config";
 import { X } from "phosphor-react-native";
@@ -27,11 +16,26 @@ import { ProductPaymentMethod } from "@components/ProductPaymentMethod";
 
 interface IProps {
   bottomSheetModalRef: any;
+  isAcceptExchange: boolean;
+  setIsAcceptExchange: React.Dispatch<React.SetStateAction<boolean>>;
+  paymentMethods: string[];
+  setPaymentMethods: React.Dispatch<React.SetStateAction<string[]>>;
+  isNew: boolean;
+  setIsNew: React.Dispatch<React.SetStateAction<boolean>>;
+  handleApplyFilters: () => void;
+  handleResetFilters: () => void;
 }
-export const ModalFilters = ({ bottomSheetModalRef }: IProps) => {
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const [valuesCheckbox, setValuesCheckbox] = useState([]);
-  // const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+export const ModalFilters = ({
+  bottomSheetModalRef,
+  isAcceptExchange,
+  isNew,
+  paymentMethods,
+  setIsAcceptExchange,
+  setIsNew,
+  setPaymentMethods,
+  handleApplyFilters,
+  handleResetFilters,
+}: IProps) => {
   const dimensions = useWindowDimensions();
   const { tokens } = gluestackUIConfig;
   const colors = tokens.colors;
@@ -89,18 +93,16 @@ export const ModalFilters = ({ bottomSheetModalRef }: IProps) => {
             >
               <Button
                 title="NOVO"
-                // onPress={handleSubmit(handleSignIn)}
-                onPress={() => {}}
-                type="primary"
+                onPress={() => setIsNew(true)}
+                type={isNew ? "primary" : "secondary"}
                 w={"$24"}
                 h={"$8"}
                 borderRadius={"$2xl"}
               />
               <Button
                 title="USADO"
-                // onPress={handleSubmit(handleSignIn)}
-                onPress={() => {}}
-                type="secondary"
+                onPress={() => setIsNew(false)}
+                type={isNew ? "secondary" : "primary"}
                 w={"$24"}
                 h={"$8"}
                 borderRadius={"$2xl"}
@@ -108,7 +110,12 @@ export const ModalFilters = ({ bottomSheetModalRef }: IProps) => {
             </HStack>
           </VStack>
 
-          <ProductPaymentMethod />
+          <ProductPaymentMethod
+            onChangeSwitch={() => setIsAcceptExchange((oldState) => !oldState)}
+            valueSwitch={isAcceptExchange}
+            setValuesCheckbox={setPaymentMethods}
+            valuesCheckbox={paymentMethods}
+          />
 
           <HStack
             mt={20}
@@ -120,13 +127,13 @@ export const ModalFilters = ({ bottomSheetModalRef }: IProps) => {
             <Button
               w={"$40"}
               title="Resetar filtros"
-              onPress={() => {}}
+              onPress={handleResetFilters}
               type="secondary"
             />
             <Button
               w={"$40"}
               title="Aplicar filtros"
-              onPress={() => {}}
+              onPress={handleApplyFilters}
               type="black"
             />
           </HStack>
