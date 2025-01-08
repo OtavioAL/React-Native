@@ -3,17 +3,25 @@ import {
   SelectIcon,
   SelectItem,
   SelectTrigger,
+  HStack,
+  Text,
+  Select,
+  SelectInput,
+  SelectPortal,
+  SelectContent,
+  SelectDragIndicator,
+  SelectBackdrop,
+  ChevronDownIcon,
 } from "@gluestack-ui/themed";
-import { ChevronDownIcon } from "@gluestack-ui/themed";
-import { SelectBackdrop } from "@gluestack-ui/themed";
-import { SelectDragIndicator } from "@gluestack-ui/themed";
-import { SelectContent } from "@gluestack-ui/themed";
-import { SelectPortal } from "@gluestack-ui/themed";
-import { SelectInput } from "@gluestack-ui/themed";
-import { Select } from "@gluestack-ui/themed";
-import { HStack, Text } from "@gluestack-ui/themed";
+import { Dispatch, SetStateAction } from "react";
 
-export const Filters = () => {
+interface IProps {
+  setFilter: Dispatch<SetStateAction<string>>;
+  filter: string;
+  numberAds: number;
+}
+
+export const Filters = ({ setFilter, filter, numberAds }: IProps) => {
   return (
     <HStack
       w={"$full"}
@@ -24,10 +32,10 @@ export const Filters = () => {
       // mb={10}
     >
       <Text color="$gray500" fontSize={"$md"} fontFamily="$body">
-        9 anúncios
+        {numberAds ?? 0} anúncios
       </Text>
 
-      <Select w={120}>
+      <Select w={120} selectedValue={filter} onValueChange={setFilter}>
         <SelectTrigger variant="outline" size="md">
           <SelectInput placeholder="Todos" />
           <SelectIcon as={ChevronDownIcon} />
@@ -38,8 +46,8 @@ export const Filters = () => {
             <SelectDragIndicatorWrapper>
               <SelectDragIndicator />
             </SelectDragIndicatorWrapper>
-            <SelectItem label="Ativos" value="ux" />
-            <SelectItem label="Desativados" value="web" />
+            <SelectItem label="Ativos" value="active" />
+            <SelectItem label="Desativados" value="disabled" />
           </SelectContent>
         </SelectPortal>
       </Select>
