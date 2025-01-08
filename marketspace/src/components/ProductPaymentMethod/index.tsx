@@ -7,11 +7,21 @@ import {
   Text,
 } from "@gluestack-ui/themed";
 import { VStack } from "@gluestack-ui/themed";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export function ProductPaymentMethod() {
-  const [valuesCheckbox, setValuesCheckbox] = useState<any>([]);
+interface Props {
+  onChangeSwitch: (value: any) => void;
+  valueSwitch: boolean;
+  valuesCheckbox: string[];
+  setValuesCheckbox: Dispatch<SetStateAction<string[]>>;
+}
 
+export function ProductPaymentMethod({
+  onChangeSwitch,
+  valueSwitch,
+  valuesCheckbox,
+  setValuesCheckbox,
+}: Props) {
   const PAYMENT_METHODS_OPTIONS = [
     {
       value: "boleto",
@@ -49,11 +59,11 @@ export function ProductPaymentMethod() {
 
         <Switch
           size="lg"
-          // isDisabled={false}
           trackColor={{ false: "$gray300", true: "$blue500" }}
           thumbColor={"$gray100"}
-          // activeThumbColor={"$gray100"}
           ios_backgroundColor={"$gray100"}
+          isChecked={valueSwitch}
+          onChange={onChangeSwitch}
         />
       </VStack>
 
