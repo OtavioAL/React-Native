@@ -59,7 +59,7 @@ O projeto utiliza diversas tecnologias modernas para garantir uma aplicação ro
 Clone o projeto para o local desejado:
 
 ```bash
-$ git clone git@github.com:andreviapiana/IgniteQuiz.git
+$ git clone
 ```
 
 ### 2. Executando a Aplicação

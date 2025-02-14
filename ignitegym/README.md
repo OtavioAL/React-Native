@@ -1,11 +1,10 @@
 # 🚀 Ignite Gym - React Native
 
+O **Ignite Gym** é uma aplicação de gerenciamento de treinos para academia, desenvolvida com **React Native**, que oferece controle completo sobre os exercícios e seu progresso.
+
 <p align="center">
   <img src="./images/cover.png" alt="Capa do Ignite Gym" width="600">
 </p>
-
-O **Ignite Gym** é uma aplicação de gerenciamento de treinos para academia, desenvolvida com **React Native**, que oferece controle completo sobre os exercícios e seu progresso.
-
 ---
 
 ## 💻 Sobre o Projeto
@@ -57,7 +56,7 @@ O projeto faz uso de tecnologias e ferramentas modernas para garantir escalabili
 Clone o projeto para o local desejado:
 
 ```bash
-$ git clone git@github.com:andreviapiana/IgniteGym.git
+$ git clone
 ```
 
 ### 2. Executando o Back-end
